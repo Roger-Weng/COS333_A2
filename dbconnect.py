@@ -125,7 +125,7 @@ def get_class_details(classid_input):
                 classDict = {"courseid": course_id, "days": days, 
                              "starttime": start_time, 
                              "endtime": end_time, 
-                             "bldg": bldg, "rommnum": room_num, 
+                             "bldg": bldg, "roomnum": room_num, 
                              "deptcoursenums": deptcoursenums_list, 
                              "area": area, "title": title, "descrip": descrip, 
                              "prereqs": prereqs, "profnames": profs_list}
