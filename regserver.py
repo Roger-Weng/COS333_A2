@@ -68,11 +68,11 @@ def main():
                     query_object = pickle.load(flo)
                     print("Recieved command:", query_object[0])
 
-                    if query_object == 'get_overviews':
+                    if query_object[0] == 'get_overviews':
                         return_obj = handle_get_overviews(query_object)
-                        print(return_obj)
+        
 
-                    if query_object == 'get_details': 
+                    if query_object[0] == 'get_details': 
                         return_obj = handle_get_details(query_object)
 
                     flo = sock.makefile(mode='wb')
