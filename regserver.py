@@ -16,18 +16,22 @@ def handle_get_details(query_object):
 def handle_get_overviews(query_object):
 
     param_dict = query_object[1]
+    dept = param_dict.get["dept"]
+    coursenum = param_dict.get["coursenum"]
+    area = param_dict.get["area"]
+    title = param_dict.get["title"]
     print("break")
-    dept_name = escape_special_characters(param_dict.get["dept"]
-                                          if param_dict.get["dept"]
+    dept_name = escape_special_characters(dept
+                                          if dept
                                           is not None else "")
-    num_value = escape_special_characters(param_dict.get["coursenum"]
-                                          if param_dict.get["coursenum"]
+    num_value = escape_special_characters(coursenum
+                                          if coursenum
                                           is not None else "")
-    area_name = escape_special_characters(param_dict.get["area"]
-                                          if param_dict.get["area"]
+    area_name = escape_special_characters(area
+                                          if area
                                           is not None else "")
-    title_name = escape_special_characters(param_dict.get["title"]
-                                           if param_dict.get["title"]
+    title_name = escape_special_characters(title
+                                           if title
                                            is not None else "")
     print("yo")
     return_obj = dbconnect.search(dept_name, num_value, area_name, title_name)    
