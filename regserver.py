@@ -16,10 +16,10 @@ def handle_get_details(query_object):
 def handle_get_overviews(query_object):
 
     param_dict = query_object[1]
-    dept = param_dict.get["dept"]
-    coursenum = param_dict.get["coursenum"]
-    area = param_dict.get["area"]
-    title = param_dict.get["title"]
+    dept = param_dict["dept"]
+    coursenum = param_dict["coursenum"]
+    area = param_dict["area"]
+    title = param_dict["title"]
     print("break")
     dept_name = escape_special_characters(dept
                                           if dept
