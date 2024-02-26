@@ -11,26 +11,31 @@ def escape_special_characters(string):
 def handle_get_details(query_object):
     classid = query_object.get("classid")
     return_obj = dbconnect.get_class_details(classid)
-    return_obj
+    return return_obj
 
 def handle_get_overviews(query_object):
-    
 
-    dept_name = escape_special_characters(query_object.get["dept"]
-                                          if query_object.get["dept"]
+    param_dict = query_object[1]
+    dept = param_dict["dept"]
+    coursenum = param_dict["coursenum"]
+    area = param_dict["area"]
+    title = param_dict["title"]
+    print("break")
+    dept_name = escape_special_characters(dept
+                                          if dept
                                           is not None else "")
-    num_value = escape_special_characters(query_object.get["coursenum"]
-                                          if query_object.get["coursenum"]
+    num_value = escape_special_characters(coursenum
+                                          if coursenum
                                           is not None else "")
-    area_name = escape_special_characters(query_object.get["area"]
-                                          if query_object.get["area"]
+    area_name = escape_special_characters(area
+                                          if area
                                           is not None else "")
-    title_name = escape_special_characters(query_object.get["title"]
-                                           if query_object.get["title"]
+    title_name = escape_special_characters(title
+                                           if title
                                            is not None else "")
-
+    print("yo")
     return_obj = dbconnect.search(dept_name, num_value, area_name, title_name)    
-
+    
     return return_obj
   
 
@@ -69,10 +74,12 @@ def main():
                     print("query_object:", query_object)
                     print("Recieved command:", query_object[0])
 
-                    if query_object == 'get_overviews':
+                    if query_object[0] == 'get_overviews':
                         return_obj = handle_get_overviews(query_object)
+                        print("done")
+        
 
-                    if query_object == 'get_details': 
+                    if query_object[0] == 'get_details': 
                         return_obj = handle_get_details(query_object)
 
                     flo = sock.makefile(mode='wb')
