@@ -15,7 +15,6 @@ def handle_get_details(query_object):
 
 def handle_get_overviews(query_object):
     
-
     dept_name = escape_special_characters(query_object[1].get["dept"]
                                           if query_object[1].get["dept"]
                                           is not None else "")
@@ -30,7 +29,7 @@ def handle_get_overviews(query_object):
                                            is not None else "")
 
     return_obj = dbconnect.search(dept_name, num_value, area_name, title_name)    
-
+    
     return return_obj
   
 
@@ -70,6 +69,7 @@ def main():
 
                     if query_object[0] == 'get_overviews':
                         return_obj = handle_get_overviews(query_object)
+                        print("done")
         
 
                     if query_object[0] == 'get_details': 
