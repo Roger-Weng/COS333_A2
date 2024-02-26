@@ -14,18 +14,20 @@ def handle_get_details(query_object):
     return return_obj
 
 def handle_get_overviews(query_object):
+
+    param_dict = query_object[1]
     
-    dept_name = escape_special_characters(query_object[1].get["dept"]
-                                          if query_object[1].get["dept"]
+    dept_name = escape_special_characters(param_dict.get["dept"]
+                                          if param_dict.get["dept"]
                                           is not None else "")
-    num_value = escape_special_characters(query_object[1].get["coursenum"]
-                                          if query_object[1].get["coursenum"]
+    num_value = escape_special_characters(param_dict.get["coursenum"]
+                                          if param_dict.get["coursenum"]
                                           is not None else "")
-    area_name = escape_special_characters(query_object[1].get["area"]
-                                          if query_object[1].get["area"]
+    area_name = escape_special_characters(param_dict.get["area"]
+                                          if param_dict.get["area"]
                                           is not None else "")
-    title_name = escape_special_characters(query_object[1].get["title"]
-                                           if query_object[1].get["title"]
+    title_name = escape_special_characters(param_dict.get["title"]
+                                           if param_dict.get["title"]
                                            is not None else "")
 
     return_obj = dbconnect.search(dept_name, num_value, area_name, title_name)    
