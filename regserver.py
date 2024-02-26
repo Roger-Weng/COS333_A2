@@ -9,7 +9,7 @@ def escape_special_characters(string):
     return string.replace('_', '\\_').replace('%', '\\%')
 
 def handle_get_details(query_object):
-    classid = query_object.get[1]
+    classid = query_object.get("classid")
     return_obj = dbconnect.get_class_details(classid)
     return_obj
 
@@ -66,6 +66,7 @@ def main():
                     print("Accepted connection, opened socket")
                     flo = sock.makefile(mode = 'rb')
                     query_object = pickle.load(flo)
+                    print("query_object:", query_object)
                     print("Recieved command:", query_object[0])
 
                     if query_object == 'get_overviews':
