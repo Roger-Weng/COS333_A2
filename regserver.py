@@ -79,8 +79,7 @@ def main():
                         print("done")
         
 
-                    if query_object[0] == 'get_details': 
-                        print("russ")
+                    if query_object[0] == 'get_detail': 
                         return_obj = handle_get_details(query_object)
 
                     flo = sock.makefile(mode='wb')
