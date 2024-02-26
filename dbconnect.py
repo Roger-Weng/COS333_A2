@@ -109,7 +109,7 @@ def get_class_details(classid_input):
                 stmt_str += "ORDER BY profname "
                 cursor.execute(stmt_str, [course_id])
                 prof_table = cursor.fetchall()
-
+                print("hit")
                 deptcoursenums_list = []
                 for row in dept_table:
                     deptcoursenums_list.append([row[0], row[1]])
