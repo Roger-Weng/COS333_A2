@@ -70,6 +70,7 @@ def main():
 
                     if query_object == 'get_overviews':
                         return_obj = handle_get_overviews(query_object)
+                        print(return_obj)
 
                     if query_object == 'get_details': 
                         return_obj = handle_get_details(query_object)
