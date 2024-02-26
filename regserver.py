@@ -16,7 +16,7 @@ def handle_get_details(query_object):
 def handle_get_overviews(query_object):
 
     param_dict = query_object[1]
-    
+    print("break")
     dept_name = escape_special_characters(param_dict.get["dept"]
                                           if param_dict.get["dept"]
                                           is not None else "")
@@ -29,7 +29,7 @@ def handle_get_overviews(query_object):
     title_name = escape_special_characters(param_dict.get["title"]
                                            if param_dict.get["title"]
                                            is not None else "")
-
+    print("yo")
     return_obj = dbconnect.search(dept_name, num_value, area_name, title_name)    
     
     return return_obj
