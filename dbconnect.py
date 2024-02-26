@@ -74,6 +74,8 @@ def get_class_details(classid_input):
         with sqlite3.connect(DATABASE_URL, isolation_level=None,
                              uri=True) as connection:
             with contextlib.closing(connection.cursor()) as cursor:
+
+                print("enter hit")
                 stmt_str = "SELECT courseid, days, starttime, "
                 stmt_str += "endtime, bldg, roomnum "
                 stmt_str += "FROM classes WHERE classid = ? "
