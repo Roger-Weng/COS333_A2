@@ -11,7 +11,7 @@ def escape_special_characters(string):
 def handle_get_details(query_object):
     classid = query_object.get[1]
     return_obj = dbconnect.get_class_details(classid)
-    return_obj
+    return return_obj
 
 def handle_get_overviews(query_object):
     
