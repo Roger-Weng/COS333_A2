@@ -9,6 +9,7 @@ def escape_special_characters(string):
     return string.replace('_', '\\_').replace('%', '\\%')
 
 def handle_get_details(query_object):
+    print("yo did we enter")
     classid = query_object[1]
     return_obj = dbconnect.get_class_details(classid)
     return return_obj
