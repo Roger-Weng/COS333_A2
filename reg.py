@@ -127,6 +127,19 @@ def create_window(central_frame):
     return window
 
 
+def handle_line_edits(lineedits):
+    print(lineedits[0].text())
+    print(lineedits[1].text())
+    print(lineedits[2].text())
+    print(lineedits[3].text())
+
+def handle_push_button(lineedits):
+    print(lineedits[0].text())
+    print(lineedits[1].text())
+    print(lineedits[2].text())
+    print(lineedits[3].text())
+
+
 def main(): 
     args = input_helper() 
     
@@ -143,6 +156,18 @@ def main():
     list_frame = create_class_list_frame(list_widget)
     central_frame = create_central_frame(control_frame, list_frame)
     window = create_window(central_frame)
+    
+
+
+    def helper_line_edits():
+        handle_line_edits(lineedits)
+    for lineedit in lineedits: 
+        lineedit.returnPressed.connect(helper_line_edits)
+
+    def helper_push_button():
+        handle_push_button(lineedits)
+    submitbutton.clicked.connect(helper_push_button)
+
     
     
     window.show()
