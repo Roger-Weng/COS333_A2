@@ -79,7 +79,6 @@ def create_lineedits():
   
 def create_control_frame(labels, lineedits, submitbutton):
     control_frame_layout = PyQt5.QtWidgets.QGridLayout()
-    control_frame_layout.setContentsMargins(0, 0, 0, 0)
     control_frame_layout.addWidget(labels[0], 0, 0)
     control_frame_layout.addWidget(labels[1], 1, 0)
     control_frame_layout.addWidget(labels[2], 2, 0)
@@ -100,7 +99,7 @@ def create_control_frame(labels, lineedits, submitbutton):
 
 def create_class_list_frame(list_widget):
     list_frame_layout = PyQt5.QtWidgets.QGridLayout()
-    central_frame_layout.setContentsMargins(0, 0, 0, 0)
+    list_frame_layout.setContentsMargins(0, 0, 0, 0)
     list_frame_layout.addWidget(list_widget, 0, 0)
     list_frame = PyQt5.QtWidgets.QFrame()
     list_frame.setLayout(list_frame_layout)
