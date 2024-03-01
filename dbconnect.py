@@ -75,7 +75,6 @@ def get_class_details(classid_input):
                              uri=True) as connection:
             with contextlib.closing(connection.cursor()) as cursor:
 
-                print("enter hit")
                 stmt_str = "SELECT courseid, days, starttime, "
                 stmt_str += "endtime, bldg, roomnum "
                 stmt_str += "FROM classes WHERE classid = ? "
@@ -83,9 +82,29 @@ def get_class_details(classid_input):
                 cursor.execute(stmt_str, [classid_input])
                 class_table = cursor.fetchall()
 
+                if len(class_table) == 0:
+                    print(sys.argv[0]+":", "no class with classid",
+                    classid_input, "exists", file=sys.stderr)
+
+                    return_list = []
+                    return_list.append(False)
+                    return_list.append("no class with classid " + classid_input + " exists")
+
+                    return return_list
+               
+
                 row = class_table[0]
                 course_id, days, start_time = row[0], row[1], row[2]
                 end_time, bldg, room_num = row[3], row[4], row[5]
+
+
+                stmt_str = "SELECT dept, coursenum "
+                stmt_str += "FROM crosslistings WHERE courseid = ? "
+                stmt_str += "ORDER BY dept, coursenum "
+                cursor.execute(stmt_str, [course_id])
+                dept_table = cursor.fetchall()
+
+                
 
                 stmt_str = "SELECT area, title, descrip, prereqs "
                 stmt_str += "FROM courses WHERE courseid = ? "
@@ -97,12 +116,6 @@ def get_class_details(classid_input):
                 descrip, prereqs = row[2], row[3]
 
 
-                stmt_str = "SELECT dept, coursenum "
-                stmt_str += "FROM crosslistings WHERE courseid = ? "
-                stmt_str += "ORDER BY dept, coursenum "
-                cursor.execute(stmt_str, [course_id])
-                dept_table = cursor.fetchall()
-
 
                 stmt_str = "SELECT profname "
                 stmt_str += "FROM coursesprofs, profs "
@@ -111,7 +124,6 @@ def get_class_details(classid_input):
                 stmt_str += "ORDER BY profname "
                 cursor.execute(stmt_str, [course_id])
                 prof_table = cursor.fetchall()
-                print("hit")
                 deptcoursenums_list = []
                 for row in dept_table:
                     deptcoursenums_list.append([row[0], row[1]])
@@ -149,72 +161,3 @@ def get_class_details(classid_input):
         return return_list
 
 
-
-  
-
-# get information of the class given classid
-def get_class_table(classid_input, arg_zero):
-    try:
-        with sqlite3.connect(DATABASE_URL, isolation_level=None,
-                             uri=True) as connection:
-            with contextlib.closing(connection.cursor()) as cursor:
-                stmt_str = "SELECT courseid, days, starttime, "
-                stmt_str += "endtime, bldg, roomnum "
-                stmt_str += "FROM classes WHERE classid = ? "
-                cursor.execute(stmt_str, [classid_input])
-                table = cursor.fetchall()
-                return table
-
-    except Exception as ex:
-        print(arg_zero + ":", ex, file=sys.stderr)
-  
-
-# get information for the course given courseid
-def get_course_info(course_id, arg_zero):
-    try:
-        with sqlite3.connect(DATABASE_URL, isolation_level=None,
-                             uri=True) as connection:
-            with contextlib.closing(connection.cursor()) as cursor:
-                stmt_str = "SELECT area, title, descrip, prereqs "
-                stmt_str += "FROM courses WHERE courseid = ? "
-                cursor.execute(stmt_str, [course_id])
-                table = cursor.fetchall()
-                return table
-
-    except Exception as ex:
-        print(arg_zero + ":", ex, file=sys.stderr)
-
-# get department and course number
-def get_department_num(course_id, arg_zero):
-    try:
-        with sqlite3.connect(DATABASE_URL, isolation_level=None,
-                             uri=True) as connection:
-            with contextlib.closing(connection.cursor()) as cursor:
-                stmt_str = "SELECT dept, coursenum "
-                stmt_str += "FROM crosslistings WHERE courseid = ? "
-                stmt_str += "ORDER BY dept, coursenum "
-                cursor.execute(stmt_str, [course_id])
-                table = cursor.fetchall()
-                return table
-
-    except Exception as ex:
-        print(arg_zero + ":", ex, file=sys.stderr)
-
-
-# get professor name
-def get_profs(course_id, arg_zero):
-    try:
-        with sqlite3.connect(DATABASE_URL, isolation_level=None,
-                             uri=True) as connection:
-            with contextlib.closing(connection.cursor()) as cursor:
-                stmt_str = "SELECT profname "
-                stmt_str += "FROM coursesprofs, profs "
-                stmt_str += "WHERE courseid = ? "
-                stmt_str += "AND profs.profid = coursesprofs.profid "
-                stmt_str += "ORDER BY profname "
-                cursor.execute(stmt_str, [course_id])
-                table = cursor.fetchall()
-                return table
-
-    except Exception as ex:
-        print(arg_zero + ":", ex, file=sys.stderr)
