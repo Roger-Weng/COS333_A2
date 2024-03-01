@@ -21,7 +21,6 @@ def handle_get_overviews(query_object):
     coursenum = param_dict["coursenum"]
     area = param_dict["area"]
     title = param_dict["title"]
-    print("break")
     dept_name = escape_special_characters(dept
                                           if dept
                                           is not None else "")
@@ -34,7 +33,6 @@ def handle_get_overviews(query_object):
     title_name = escape_special_characters(title
                                            if title
                                            is not None else "")
-    print("yo")
     return_obj = dbconnect.search(dept_name, num_value, area_name, title_name)    
     
     return return_obj

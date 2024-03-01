@@ -165,7 +165,7 @@ def handle_form_submit(lineedits, list_widget, host, port, window):
                 list_widget.setCurrentRow(0)            
             else: 
                 PyQt5.QtWidgets.QMessageBox.critical(
-                window, "Server Error", "A server error occured. Please contact system administrator")
+                window, "Server Error", search_results[1])
 
     except Exception as ex: 
          PyQt5.QtWidgets.QMessageBox.critical(
@@ -215,7 +215,7 @@ def handle_list_clicked(list_widget, host, port, window):
                
             else: 
                 PyQt5.QtWidgets.QMessageBox.critical(
-                window, "Server Error", "A server error occured. Please contact system administrator")
+                window, "Server Error", search_results[1])
 
     except Exception as ex: 
         PyQt5.QtWidgets.QMessageBox.critical(
