@@ -88,7 +88,7 @@ def get_class_details(classid_input):
 
                     return_list = []
                     return_list.append(False)
-                    return_list.append("no class with classid " + classid_input + " exists")
+                    return_list.append("no class with classid " + str(classid_input) + " exists")
 
                     return return_list
                
@@ -104,7 +104,7 @@ def get_class_details(classid_input):
                 cursor.execute(stmt_str, [course_id])
                 dept_table = cursor.fetchall()
 
-                
+
 
                 stmt_str = "SELECT area, title, descrip, prereqs "
                 stmt_str += "FROM courses WHERE courseid = ? "
