@@ -171,7 +171,7 @@ def handle_form_submit(lineedits, list_widget, host, port, window):
 
     except Exception as ex: 
          PyQt5.QtWidgets.QMessageBox.information(
-                window, "Server Error", ex)
+                window, "Server Error", ex.__str__)
 
 def handle_list_clicked(list_widget, host, port, window):
     class_entry = list_widget.currentItem().text()
@@ -221,7 +221,7 @@ def handle_list_clicked(list_widget, host, port, window):
 
     except Exception as ex: 
         PyQt5.QtWidgets.QMessageBox.information(
-                window, "Server Error", ex)
+                window, "Server Error", ex.__str__)
    
 
 def main(): 
