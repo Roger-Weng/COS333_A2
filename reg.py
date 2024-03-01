@@ -26,6 +26,7 @@ def create_pushbutton():
 
 def create_list_widget():
     listwidget = PyQt5.QtWidgets.QListWidget()
+    listwidget.font(PyQt5.QtGui.QFont("Courier New", 10))
     return listwidget
     
     
@@ -210,7 +211,7 @@ def handle_list_clicked(list_widget, host, port, window):
                 for professor in profs:
                     display_string += "Professor: " + professor + "\n"
                 PyQt5.QtWidgets.QMessageBox.information(
-            window, "My title", display_string)
+                window, "My title", display_string)
                
             else: 
                 print("error")
