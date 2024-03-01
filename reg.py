@@ -243,6 +243,7 @@ def main():
     central_frame = create_central_frame(control_frame, list_frame)
     window = create_window(central_frame)
 
+    window.show()
     handle_form_submit(lineedits, list_widget, host, port, window)
     
 
@@ -261,8 +262,7 @@ def main():
     list_widget.itemActivated.connect(helper_list_clicked)    
     
     
-    
-    window.show()
+
     sys.exit(app.exec_())
     
     
