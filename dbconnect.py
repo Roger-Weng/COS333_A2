@@ -57,7 +57,7 @@ def search(dept_input, num_input, area_input, title_input):
     except Exception as ex:
         return_list = []
         return_list.append(False)
-        return_list.append(ex)
+        return_list.append(str(ex))
 
         print(sys.argv[0] + ":", ex, file=sys.stderr)
   
@@ -142,7 +142,7 @@ def get_class_details(classid_input):
     except Exception as ex:
         return_list = []
         return_list.append(False)
-        return_list.append(ex)
+        return_list.append(str(ex))
 
         print(sys.argv[0] + ":", ex, file=sys.stderr)
   

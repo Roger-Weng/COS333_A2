@@ -27,8 +27,6 @@ def create_list_widget():
     listwidget = PyQt5.QtWidgets.QListWidget()
     listwidget.setFont(PyQt5.QtGui.QFont("Courier New", 10))
     return listwidget
-    
-    
 
 
 def create_labels(): 
@@ -261,11 +259,8 @@ def main():
         handle_list_clicked(list_widget, host, port, window)
     list_widget.itemActivated.connect(helper_list_clicked)    
     
-    
 
     sys.exit(app.exec_())
     
-    
-
 if __name__ == '__main__':
     main()
