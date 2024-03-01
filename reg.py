@@ -129,7 +129,7 @@ def create_window(central_frame):
     return window
 
 
-def handle_form_submit(lineedits, list_widget, host, port):
+def handle_form_submit(lineedits, list_widget, host, port, window):
 
     
 
@@ -166,10 +166,12 @@ def handle_form_submit(lineedits, list_widget, host, port):
                     row += 1
                 list_widget.setCurrentRow(0)            
             else: 
-                print("error")
+                PyQt5.QtWidgets.QMessageBox.information(
+                window, "Server Error", "A server error occured. Please contact system administrator")
 
     except Exception as ex: 
-        print(ex, file=sys.stderr)
+         PyQt5.QtWidgets.QMessageBox.information(
+                window, "Server Error", ex)
 
 def handle_list_clicked(list_widget, host, port, window):
     class_entry = list_widget.currentItem().text()
@@ -211,13 +213,15 @@ def handle_list_clicked(list_widget, host, port, window):
                 for professor in profs:
                     display_string += "Professor: " + professor + "\n"
                 PyQt5.QtWidgets.QMessageBox.information(
-                window, "My title", display_string)
+                window, "Class Details", display_string)
                
             else: 
-                print("error")
+                PyQt5.QtWidgets.QMessageBox.information(
+                window, "Server Error", "A server error occured. Please contact system administrator")
 
     except Exception as ex: 
-        print(ex, file=sys.stderr)
+        PyQt5.QtWidgets.QMessageBox.information(
+                window, "Server Error", ex)
    
 
 def main(): 
@@ -239,7 +243,7 @@ def main():
     central_frame = create_central_frame(control_frame, list_frame)
     window = create_window(central_frame)
 
-    handle_form_submit(lineedits, list_widget, host, port)
+    handle_form_submit(lineedits, list_widget, host, port, window)
     
 
 
@@ -249,7 +253,7 @@ def main():
         lineedit.returnPressed.connect(helper_line_edits)
 
     def helper_push_button():
-        handle_form_submit(lineedits, list_widget, host, port)
+        handle_form_submit(lineedits, list_widget, host, port, window)
     submitbutton.clicked.connect(helper_push_button)
 
     def helper_list_clicked():
