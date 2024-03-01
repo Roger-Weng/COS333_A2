@@ -26,7 +26,7 @@ def create_pushbutton():
 
 def create_list_widget():
     listwidget = PyQt5.QtWidgets.QListWidget()
-    listwidget.font(PyQt5.QtGui.QFont("Courier New", 10))
+    listwidget.setFont(PyQt5.QtGui.QFont("Courier New", 10))
     return listwidget
     
     
