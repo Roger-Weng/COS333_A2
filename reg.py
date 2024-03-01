@@ -192,7 +192,7 @@ def handle_list_clicked(list_widget, host, port, window):
             
 
             if (search_status):
-                display_string = "Course Id: " + str(class_dict["courseid"]) + "\n"
+                display_string = "Course Id: " + str(class_dict["courseid"]) + "\n\n"
                 display_string += "Days: " + class_dict["days"] + "\n"
                 display_string += "Start time: " + class_dict["starttime"] + "\n"
                 display_string += "End time: " + class_dict["endtime"] + "\n"
@@ -202,7 +202,7 @@ def handle_list_clicked(list_widget, host, port, window):
                 dept_nums_list = class_dict["deptcoursenums"]
                 for pair in dept_nums_list:
                     display_string += "Dept and Number: " + pair[0] + " " + pair[1] + "\n"
-                
+                display_string += "\n"
                 display_string += "Area: " + class_dict["area"] + "\n\n"
                 display_string += "Title: " + class_dict["title"] + "\n\n"
                 display_string += "Description: " + class_dict["descrip"] + "\n\n"
@@ -238,6 +238,8 @@ def main():
     list_frame = create_class_list_frame(list_widget)
     central_frame = create_central_frame(control_frame, list_frame)
     window = create_window(central_frame)
+
+    handle_form_submit(lineedits, list_widget, host, port)
     
 
 
