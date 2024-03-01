@@ -16,8 +16,7 @@ def input_helper():
 
     return args 
   
-    
-    
+
 
 def create_pushbutton():
     submit_button = PyQt5.QtWidgets.QPushButton("Submit:")
@@ -165,6 +164,7 @@ def handle_form_submit(lineedits, list_widget, host, port):
                     class_dict["coursenum"], class_dict["area"], class_dict["title"])
                     list_widget.insertItem(row, entry)
                     row += 1
+                list_widget.setCurrentRow(0)            
             else: 
                 print("error")
 
