@@ -86,8 +86,13 @@ def get_class_details(classid_input):
                     return return_list
 
                 row = class_table[0]
-                course_id, days, start_time = row[0], row[1], row[2]
-                end_time, bldg, room_num = row[3], row[4], row[5]
+                course_id = row[0]
+
+
+                classDict = {"courseid": course_id, "days": row[1],
+                             "starttime": row[2],
+                             "endtime": row[3],
+                             "bldg": row[4], "roomnum": row[5]}
 
                 stmt_str = "SELECT dept, coursenum "
                 stmt_str += "FROM crosslistings WHERE courseid = ? "
@@ -101,8 +106,10 @@ def get_class_details(classid_input):
                 course_table = cursor.fetchall()
 
                 row = course_table[0]
-                area, title = row[0], row[1]
-                descrip, prereqs = row[2], row[3]
+                classDict["area"] = row[0]
+                classDict["title"] = row[1]
+                classDict["descrip"] = row[2]
+                classDict["prereqs"] = row[3]
 
                 stmt_str = "SELECT profname "
                 stmt_str += "FROM coursesprofs, profs "
@@ -121,15 +128,18 @@ def get_class_details(classid_input):
                 for row in prof_table:
                     profs_list.append(row[0])
 
-                classDict = {"courseid": course_id, "days": days,
-                             "starttime": start_time,
-                             "endtime": end_time,
-                             "bldg": bldg, "roomnum": room_num,
-                             "deptcoursenums": deptcoursenums_list,
-                             "area": area, "title": title, 
-                             "descrip": descrip,
-                             "prereqs": prereqs, 
-                             "profnames": profs_list}
+                classDict["deptcoursenums"] = deptcoursenums_list
+                classDict["profnames"] = profs_list
+
+                # classDict = {"courseid": course_id, "days": days,
+                #              "starttime": start_time,
+                #              "endtime": end_time,
+                #              "bldg": bldg, "roomnum": room_num,
+                #              "deptcoursenums": deptcoursenums_list,
+                #              "area": area, "title": title, 
+                #              "descrip": descrip,
+                #              "prereqs": prereqs, 
+                #              "profnames": profs_list}
 
                 return_list = []
                 return_list.append(True)
