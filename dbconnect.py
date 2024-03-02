@@ -124,13 +124,11 @@ def get_class_details(classid_input):
                 cursor.execute(stmt_str, [course_id])
 
                 prof_table = cursor.fetchall()
-                
 
                 profs_list = []
                 for row in prof_table:
                     profs_list.append(row[0])
 
-        
                 classDict["profnames"] = profs_list
 
                 return_list = []
