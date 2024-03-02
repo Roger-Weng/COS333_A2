@@ -105,7 +105,7 @@ def main():
     print(connect_server(host, port, ["get_detail", 10109]))
     print(connect_server(host, port, ["get_detail", 10109]))
    
-    os.system("cp /u/cos333/Asgt1Solution/reg.sqlite .")
+    os.system("cp /u/cos333/Asgt2Solution/reg.sqlite .")
 
 
     # Add more tests here.

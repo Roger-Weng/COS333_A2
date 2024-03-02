@@ -274,7 +274,7 @@ def main():
 
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':''}]))
 
-    os.system("cp /u/cos333/Asgt1Solution/reg.sqlite .")
+    os.system("cp /u/cos333/Asgt2Solution/reg.sqlite .")
 
     
 
