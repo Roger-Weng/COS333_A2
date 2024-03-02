@@ -95,6 +95,8 @@ def main():
     
     
 
+    print(connect_server(host, port, ["get_detail", 10109]))
+
     os.system("rm -f reg.sqlite")
 
     print(connect_server(host, port, ["get_detail", 10109]))
