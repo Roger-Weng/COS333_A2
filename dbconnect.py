@@ -75,8 +75,7 @@ def get_class_details(classid_input):
                 if len(class_table) == 0:
                     print(sys.argv[0]+":", "no class with classid",
                     classid_input, "exists", file=sys.stderr)
-                    return_list = []
-                    return_list.append(False)
+                    return_list = [False]
                     return_list.append(
         "no class with classid " + str(classid_input) + " exists")
 
