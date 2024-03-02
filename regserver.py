@@ -78,8 +78,10 @@ def main():
                     if query_object[0] == 'get_detail':
                         return_obj = handle_get_details(
                             query_object)
+                        print("hit")
                         flo = sock.makefile(
                         mode='wb')
+                        print("hit")
                     pickle.dump(return_obj,
                                  flo)
                     flo.flush()
