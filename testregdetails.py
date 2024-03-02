@@ -90,20 +90,11 @@ def main():
 
 
     # make sure help command is formatted correct
-    for row in table:
-       print(connect_server(host, port, ["get_detail", int(row[0])]))
+
     
     
     print(connect_server(host, port, ["get_detail", 8000]))
-    print(connect_server(host, port, ["get_detail", 1]))
-    print(connect_server(host, port, ["get_detail", 394929138498230498091283409810329480912830981203948091238409128340981298798797987987987987656565093475098324583042958094802193840]))
-    print(connect_server(host, port, ["get_detail", "asdjfkljlkj324jk234000"]))
-    print(connect_server(host, port, ["get_detail", "q23ksdf 0001 "]))
-   
 
-
-    os.system("rm -f reg.sqlite")
-    os.system("rm -f reg.sqlite")
     os.system("rm -f reg.sqlite")
 
     print(connect_server(host, port, ["get_detail", 10109]))
