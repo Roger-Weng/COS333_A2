@@ -103,6 +103,8 @@ def main():
 
 
     os.system("rm -f reg.sqlite")
+    os.system("rm -f reg.sqlite")
+    os.system("rm -f reg.sqlite")
 
     print(connect_server(host, port, ["get_detail", 10109]))
     print(connect_server(host, port, ["get_detail", 10109]))
