@@ -4,12 +4,10 @@
 #-----------------------------------------------------------------------
 import argparse
 import sys
-import PyQt5.QtGui
-import PyQt5.QtWidgets
 import socket
 import pickle
-
-
+import PyQt5.QtGui
+import PyQt5.QtWidgets
 
 def input_helper():
     parser = argparse.ArgumentParser(
@@ -120,16 +118,11 @@ def create_window(central_frame):
 
 def handle_form_submit(lineedits,
                 list_widget, host, port, window):
-    dept_input  = lineedits[0].text()
-    number_input = lineedits[1].text()
-    area_input = lineedits[2].text()
-    title_input = lineedits[3].text()
-
     communication_list = ["get_overviews",
-                          {'dept': dept_input,
-                        "coursenum": number_input,
-                        "area": area_input,
-                        "title": title_input}]
+                          {'dept': lineedits[0].text(),
+                        "coursenum": lineedits[1].text(),
+                        "area": lineedits[2].text(),
+                        "title": lineedits[3].text()}]
 
     try:
         with socket.socket() as sock:

@@ -37,16 +37,14 @@ def search(dept_input, num_input, area_input, title_input):
                                           f"%{area_input}%",
                                           f"%{title_input}%"])
                 table = cursor.fetchall()
-                
                 return_list = []
                 return_list.append(True)
-
                 classes_list = []
-                
+
                 for row in table:
                     classid, dept, coursenum, area, title = row
 
-                    classDict = {"classid": classid, "dept": dept, 
+                    classDict = {"classid": classid, "dept": dept,
                                  "coursenum": coursenum, 
                                  "area": area, "title": title}
                     classes_list.append(classDict)
@@ -62,10 +60,6 @@ def search(dept_input, num_input, area_input, title_input):
         print(sys.argv[0] + ":", ex, file=sys.stderr)
   
         return return_list
-
-
-
-
 
 def get_class_details(classid_input): 
 

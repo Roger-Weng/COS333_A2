@@ -44,8 +44,8 @@ def handle_get_overviews(query_object):
 def input_helper():
     parser = argparse.ArgumentParser(
         description="Server for the registrar application")
-    helpMessage = "the port at which the server should listen"
-    parser.add_argument('port', type=int, help = helpMessage)
+    help_message = "the port at which the server should listen"
+    parser.add_argument('port', type=int, help = help_message)
     args = parser.parse_args()
     return args.port
 
