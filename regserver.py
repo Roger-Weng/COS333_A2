@@ -38,7 +38,7 @@ def input_helper():
     parser.add_argument('port', type=int, help="the port at which the server should listen")
     args = parser.parse_args()
     return args.port    
-    
+
 def main():
     try:
         port  = input_helper()
@@ -68,7 +68,7 @@ def main():
                     flo = sock.makefile(mode='wb')
                     pickle.dump(return_obj, flo)
                     flo.flush()
-                    print("Closed socket")
+                    
 
                 print("Closed socket")   
 

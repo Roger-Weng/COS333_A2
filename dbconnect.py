@@ -42,11 +42,9 @@ def search(dept_input, num_input, area_input, title_input):
                 classes_list = []
 
                 for row in table:
-                    classid, dept, coursenum, area, title = row
-
-                    classDict = {"classid": classid, "dept": dept,
-                                 "coursenum": coursenum, 
-                                 "area": area, "title": title}
+                    classDict = {"classid": row[0], "dept": row[1],
+                                 "coursenum": row[2], 
+                                 "area": row[3], "title": row[4]}
                     classes_list.append(classDict)
 
                 return_list.append(classes_list)
