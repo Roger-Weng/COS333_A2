@@ -58,10 +58,10 @@ def search(dept_input, num_input, area_input, title_input):
         return_list.append(
 "A server error occurred. Please contact the system administrator.")
         print(sys.argv[0] + ":", ex, file=sys.stderr)
-  
+
         return return_list
 
-def get_class_details(classid_input): 
+def get_class_details(classid_input):
 
     try:
 
@@ -142,7 +142,7 @@ def get_class_details(classid_input):
     except Exception as ex:
         return_list = []
         return_list.append(False)
-        return_list.append(          
+        return_list.append(
 "A server error occurred. Please contact the system administrator.")
 
         print(sys.argv[0] + ":", ex, file=sys.stderr)

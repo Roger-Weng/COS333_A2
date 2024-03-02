@@ -1,25 +1,16 @@
-#-----------------------------------------------------------------------
-# regserver.py
-# Authors: Roger Weng, Vishva Ilavelan
-#-----------------------------------------------------------------------
 import argparse
 import socket
 import pickle
 import os
 import sys
 import dbconnect
-
-#-----------------------------------------------------------------------
 def escape_special_characters(string):
     return string.replace('_', '\\_').replace('%', '\\%')
-
 def handle_get_details(query_object):
     classid = query_object[1]
     return_obj = dbconnect.get_class_details(classid)
     return return_obj
-
 def handle_get_overviews(query_object):
-
     param_dict = query_object[1]
     dept = param_dict["dept"]
     coursenum = param_dict["coursenum"]
@@ -37,18 +28,17 @@ def handle_get_overviews(query_object):
     title_name = escape_special_characters(title
                                            if title
                                            is not None else "")
-    return_obj = dbconnect.search(dept_name, num_value, area_name,
-                                   title_name)
+    return_obj = dbconnect.search(dept_name, num_value, area_name, title_name)    
+    
     return return_obj
-
+  
 def input_helper():
     parser = argparse.ArgumentParser(
         description="Server for the registrar application")
-    help_message = "the port at which the server should listen"
-    parser.add_argument('port', type=int, help = help_message)
+    parser.add_argument('port', type=int, help="the port at which the server should listen")
     args = parser.parse_args()
-    return args.port
-
+    return args.port    
+    
 def main():
     try:
         port  = input_helper()
@@ -61,37 +51,34 @@ def main():
         print("Bound server socket to port")
         server_sock.listen()
         print("Listening")
-
         while True:
             try:
                 sock, _ = server_sock.accept()
+        
                 with sock:
                     print("Accepted connection, opened socket")
                     flo = sock.makefile(mode = 'rb')
                     query_object = pickle.load(flo)
-                    print("Recieved command:",
-                          query_object[0])
-
+                    print("Recieved command:", query_object[0])
                     if query_object[0] == 'get_overviews':
-                        return_obj = handle_get_overviews(
-                            query_object)
-                    if query_object[0] == 'get_detail':
-                        return_obj = handle_get_details(
-                            query_object)
-                        print("hit")
-                        flo = sock.makefile(
-                        mode='wb')
-                        print("hit")
-                    pickle.dump(return_obj,
-                                 flo)
+                        return_obj = handle_get_overviews(query_object)
+        
+                    if query_object[0] == 'get_detail': 
+                        return_obj = handle_get_details(query_object)
+                    flo = sock.makefile(mode='wb')
+                    pickle.dump(return_obj, flo)
                     flo.flush()
-                print("Closed socket")
+                    print("Closed socket")
+
+                print("Closed socket")   
+
             except Exception as ex:
-                print(sys.argv[0] + ":", ex, file=sys.stderr)
+                print(ex, file = sys.stderr)
+       
     except Exception as ex:
-        # error in initializing server, can kill the program
+        # error in initializing server, can kill hte program
         print(sys.argv[0] + ":", ex, file=sys.stderr)
         sys.exit(1)
-
+        
 if __name__ == '__main__':
     main()
