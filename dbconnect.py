@@ -99,6 +99,11 @@ def get_class_details(classid_input):
                 cursor.execute(stmt_str, [course_id])
                 dept_table = cursor.fetchall()
 
+                deptcoursenums_list = []
+                for row in dept_table:
+                    deptcoursenums_list.append([row[0], row[1]])
+                classDict["deptcoursenums"] = deptcoursenums_list
+
                 stmt_str = "SELECT area, title, descrip, prereqs "
                 stmt_str += "FROM courses WHERE courseid = ? "
                 cursor.execute(stmt_str, [course_id])
@@ -119,15 +124,13 @@ def get_class_details(classid_input):
                 cursor.execute(stmt_str, [course_id])
 
                 prof_table = cursor.fetchall()
-                deptcoursenums_list = []
-                for row in dept_table:
-                    deptcoursenums_list.append([row[0], row[1]])
+                
 
                 profs_list = []
                 for row in prof_table:
                     profs_list.append(row[0])
 
-                classDict["deptcoursenums"] = deptcoursenums_list
+        
                 classDict["profnames"] = profs_list
 
                 return_list = []
