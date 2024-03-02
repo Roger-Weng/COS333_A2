@@ -10,9 +10,11 @@ In reg.py, Roger wrote the functions that create control frame, list frame,
 central frame, window. In additon, Roger also wrote part of the functions 
 that handle form sumbit and the main function.
 
-In regserver.py, Roger mainly wrote the parts that handle get overviews 
+In regserver.py, Roger mainly wrote the parts that handle get overviews and the main function.
 
-In db_connect.py, Roger wrote the function that search for specific classes given certain constraints(for reg.py). Roger also wrote get_class_table and get_course_info functions (for regdetails.py). 
+In db_connect.py, We forgot 
+
+
 
 Here's the contributions from Vishva Ilavelan:
 

@@ -86,6 +86,10 @@ def main():
 
     table = getclassids()
 
+    
+    for row in table:
+       print(connect_server(host, port, ["get_detail", int(row[0])]))
+
     # make sure help command is formatted correct
     
 
