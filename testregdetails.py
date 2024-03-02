@@ -79,10 +79,7 @@ def print_flush(message):
 
 def main(): 
 
-    if len(sys.argv) != 2:
-        print('Usage: ' + sys.argv[0] + ' regdetailsprogram',
-            file=sys.stderr)
-        sys.exit(1)
+
 
     host = sys.argv[1]
     port = sys.argv[2]
