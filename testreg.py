@@ -78,8 +78,7 @@ def connect_server(host, port, comm_message):
 
 def main():
 
-    if len(sys.argv) != 2:
-        sys.exit(1)
+    
 
     print("yo")
 
