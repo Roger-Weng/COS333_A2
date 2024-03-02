@@ -11,6 +11,7 @@ import sqlite3
 import contextlib
 import socket
 import pickle
+import time
 
 
 DATABASE_URL = 'file:reg.sqlite?mode=rw'
@@ -85,7 +86,7 @@ def main():
     host = sys.argv[1]
     port = int(sys.argv[2])
 
-    
+
     print(connect_server(host, port, ['get_overviews', {'dept':'COS', 'coursenum':'', 'area':'', 'title':''}]))
     print(connect_server(host, port, ['get_overviews', {'dept':'COS', 'coursenum':'2', 'area':'qr', 'title':'intro'}]))
 
@@ -226,6 +227,7 @@ def main():
     corruption_helper("courses ")
 
     # test how responds to missing table
+    time.sleep(2)
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'QR', 'title':''}]))
 
 
@@ -233,6 +235,7 @@ def main():
     restore_table("CREATE TABLE courses (courseid INTEGER DEFAULT NULL, area TEXT DEFAULT NULL, descrip TEXT DEFAULT NULL, prereqs TEXT DEFAULT NULL) ")
 
     # test response to a missing coloumn
+    time.sleep(2)
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':'the'}]))
 
 
@@ -240,39 +243,43 @@ def main():
 
     corruption_helper("crosslistings ")
 
+    time.sleep(2)
     print(connect_server(host, port, ['get_overviews', {'dept':'cos', 'coursenum':'', 'area':'', 'title':''}]))
 
     # test response with a missing coloumn
     restore_table("CREATE TABLE crosslistings (courseid INTEGER DEFAULT NULL, coursenum TEXT DEFAULT NULL) ")
 
+    time.sleep(2)
     print(connect_server(host, port, ['get_overviews', {'dept':'phy', 'coursenum':'', 'area':'', 'title':''}]))
 
 
 
     corruption_helper("classes ")
 
+    time.sleep(2)
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'SA', 'title':''}]))
 
 
     restore_table("CREATE TABLE classes (classid INTEGER DEFAULT NULL, courseid INTEGER DEFAULT NULL, days TEXT DEFAULT NULL, starttime TEXT DEFAULT NULL, endtime TEXT DEFAULT NULL) ")
-
+    time.sleep(2)
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'SA', 'title':''}]))
 
     corruption_helper("classes ")
     corruption_helper("crosslistings ")
 
-
+    time.sleep(2)
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':''}]))
 
     corruption_helper("profs ")
     corruption_helper("coursesprofs ")
     corruption_helper("courses ")
-
+    time.sleep(2)
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':''}]))
 
 
     os.system("rm -f reg.sqlite")
 
+    time.sleep(2)
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':''}]))
 
     os.system("cp /u/cos333/Asgt1Solution/reg.sqlite .")
