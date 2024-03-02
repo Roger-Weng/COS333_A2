@@ -9,7 +9,7 @@ import pickle
 
 def input_helper():
     parser = argparse.ArgumentParser(
-        description="Server for the registrar application")
+        description="Client for the register application")
     parser.add_argument('host', help="the host on which the server is running")
     parser.add_argument('port', type=int, help="the port at which the server is listening")
     args = parser.parse_args()
