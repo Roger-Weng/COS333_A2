@@ -172,10 +172,9 @@ def handle_list_clicked(list_widget, host, port, window):
 
             flo = sock.makefile(mode = 'rb')
             search_results = pickle.load(flo)
-            search_status = search_results[0]
             class_dict = search_results[1]
 
-            if search_status:
+            if search_results[0]:
                 display_string = "Course Id: " + str(
                     class_dict["courseid"]) + "\n\n"
                 display_string += "Days: " + class_dict[
@@ -216,7 +215,6 @@ def handle_list_clicked(list_widget, host, port, window):
 
 def main():
     args = input_helper()
-    host = args.host
     port = args.port
 
     app = PyQt5.QtWidgets.QApplication(sys.argv)
@@ -237,24 +235,24 @@ def main():
 
     window.show()
     handle_form_submit(
-        lineedits, list_widget, host, port, window)
+        lineedits, list_widget, args.host, port, window)
 
     def helper_line_edits():
         handle_form_submit(
-            lineedits, list_widget, host, port, window)
+            lineedits, list_widget, args.host, port, window)
     for lineedit in lineedits:
         lineedit.returnPressed.connect(
             helper_line_edits)
 
     def helper_push_button():
         handle_form_submit(
-            lineedits, list_widget, host, port, window)
+            lineedits, list_widget, args.host, port, window)
     submitbutton.clicked.connect(
         helper_push_button)
 
     def helper_list_clicked():
         handle_list_clicked(
-            list_widget, host, port, window)
+            list_widget, args.host, port, window)
     list_widget.itemActivated.connect(
         helper_list_clicked)
 
