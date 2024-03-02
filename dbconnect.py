@@ -58,7 +58,7 @@ def search(dept_input, num_input, area_input, title_input):
         print(sys.argv[0] + ":", ex, file=sys.stderr)
 
         return return_list
-    
+
 
 # returns necessary data for class details query, based on a given
 # classid
