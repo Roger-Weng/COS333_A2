@@ -8,12 +8,10 @@ We did mostly pair programming on the assignment.
 Here's the contributions from Yan (Roger) Weng: 
 In reg.py, Roger wrote the functions that create control frame, list frame,
 central frame, window. In additon, Roger also wrote part of the functions 
-that handle form sumbit and the main function.
-
-In regserver.py, Roger mainly wrote the parts that handle get overviews and the main function.
-
-dbconnect.py is very similar to what we used in assignment 1. Roger combined the functions in assignment 1
-to 
+that handle form sumbit and the main function. In regserver.py, Roger mainly 
+wrote the parts that handle get overviews and the main function. dbconnect.py 
+is very similar to what we used in assignment 1. Roger combined the functions 
+in assignment 1 into one single get_class_details function.
 
 
 
