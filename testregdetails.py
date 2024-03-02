@@ -109,7 +109,6 @@ def main():
     os.system("cp /u/cos333/Asgt1Solution/reg.sqlite .")
 
 
-
     # Add more tests here.
 
 if __name__ == '__main__':
