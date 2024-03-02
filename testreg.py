@@ -81,6 +81,8 @@ def main():
     if len(sys.argv) != 2:
         sys.exit(1)
 
+    print("yo")
+
     host = sys.argv[1]
     port = sys.argv[2]
 
