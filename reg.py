@@ -215,31 +215,30 @@ def handle_list_clicked(list_widget, host, port, window):
                     display_string += "Professor: " + professor + "\n"
                 PyQt5.QtWidgets.QMessageBox.information(
                 window, "Class Details", display_string)
-               
-            else: 
+
+            else:
                 PyQt5.QtWidgets.QMessageBox.critical(
                 window, "Server Error", search_results[1])
 
-    except Exception as ex: 
+    except Exception as ex:
         PyQt5.QtWidgets.QMessageBox.critical(
                 window, "Server Error", str(ex))
-   
 
-def main(): 
-    args = input_helper() 
+def main():
+    args = input_helper()
     host = args.host
     port = args.port
-    
+
     app = PyQt5.QtWidgets.QApplication(sys.argv)
-    
+
     # Create and lay out widgets.
     labels = create_labels()
     lineedits = create_lineedits()
     submitbutton = create_pushbutton()
-    
+
     control_frame = create_control_frame(
         labels, lineedits, submitbutton)
-   
+
     list_widget = create_list_widget()
     list_frame = create_class_list_frame(list_widget)
     central_frame = create_central_frame(
@@ -249,13 +248,11 @@ def main():
     window.show()
     handle_form_submit(
         lineedits, list_widget, host, port, window)
-    
-
 
     def helper_line_edits():
         handle_form_submit(
             lineedits, list_widget, host, port, window)
-    for lineedit in lineedits: 
+    for lineedit in lineedits:
         lineedit.returnPressed.connect(
             helper_line_edits)
 
@@ -269,8 +266,7 @@ def main():
         handle_list_clicked(
             list_widget, host, port, window)
     list_widget.itemActivated.connect(
-        helper_list_clicked)    
-    
+        helper_list_clicked)
 
     sys.exit(app.exec_())
     
