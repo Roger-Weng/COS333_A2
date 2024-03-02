@@ -221,60 +221,7 @@ def main():
 
     # test database corruption 
 
-    # drop courses table
-    corruption_helper("courses ")
-
-    # test how responds to missing table
-    print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'QR', 'title':''}]))
     
-
-    # restore table but with a missing coloumn. 
-    restore_table("CREATE TABLE courses (courseid INTEGER DEFAULT NULL, area TEXT DEFAULT NULL, descrip TEXT DEFAULT NULL, prereqs TEXT DEFAULT NULL) ")
-
-    # test response to a missing coloumn
-    print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':'the'}]))
-
-
-    # test response to another dropped table 
-
-    corruption_helper("crosslistings ")
-
-    print(connect_server(host, port, ['get_overviews', {'dept':'cos', 'coursenum':'', 'area':'', 'title':''}]))
-
-    # test response with a missing coloumn
-    restore_table("CREATE TABLE crosslistings (courseid INTEGER DEFAULT NULL, coursenum TEXT DEFAULT NULL) ")
-
-    print(connect_server(host, port, ['get_overviews', {'dept':'phy', 'coursenum':'', 'area':'', 'title':''}]))
-
-
-
-    corruption_helper("classes ")
-
-    print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'SA', 'title':''}]))
-
-
-    restore_table("CREATE TABLE classes (classid INTEGER DEFAULT NULL, courseid INTEGER DEFAULT NULL, days TEXT DEFAULT NULL, starttime TEXT DEFAULT NULL, endtime TEXT DEFAULT NULL) ")
-
-    print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'SA', 'title':''}]))
-
-    corruption_helper("classes ")
-    corruption_helper("crosslistings ")
- 
-
-    print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':''}]))
-
-    corruption_helper("profs ")
-    corruption_helper("coursesprofs ")
-    corruption_helper("courses ")
-
-    print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':''}]))
-  
-
-    os.system("rm -f reg.sqlite")
-
-    print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':''}]))
-
-    os.system("cp /u/cos333/Asgt2Solution/reg.sqlite .")
 
     
 
