@@ -84,17 +84,11 @@ def main():
     host = sys.argv[1]
     port = int(sys.argv[2])
 
-    table = getclassids()
 
     
 
 
     # make sure help command is formatted correct
-
-    
-    
-    
-
     print(connect_server(host, port, ["get_detail", 10109]))
 
     os.system("rm -f reg.sqlite")
