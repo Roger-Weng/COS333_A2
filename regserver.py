@@ -4,12 +4,18 @@ import pickle
 import os
 import sys
 import dbconnect
+
+# helper method for dealing with wildcard characters
 def escape_special_characters(string):
     return string.replace('_', '\\_').replace('%', '\\%')
+
+# helper method for handling get_details queries
 def handle_get_details(query_object):
     classid = query_object[1]
     return_obj = dbconnect.get_class_details(classid)
     return return_obj
+
+# helper method for handling get overviews queries
 def handle_get_overviews(query_object):
     param_dict = query_object[1]
     dept = param_dict["dept"]
@@ -32,6 +38,7 @@ def handle_get_overviews(query_object):
                                    area_name, title_name)
     return return_obj
 
+# helper method for handling input
 def input_helper():
     parser = argparse.ArgumentParser(
         description="Server for the registrar application")
@@ -40,6 +47,7 @@ def input_helper():
     args = parser.parse_args()
     return args.port
 
+# main function, facilitates server, listens for connections
 def main():
     try:
         port  = input_helper()

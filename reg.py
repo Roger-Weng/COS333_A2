@@ -9,6 +9,7 @@ import pickle
 import PyQt5.QtGui
 import PyQt5.QtWidgets
 
+# helps parse input / command line args for reg.py
 def input_helper():
     parser = argparse.ArgumentParser(
         description="Client for the register application")
@@ -19,15 +20,18 @@ def input_helper():
     args = parser.parse_args()
     return args
 
+# creates push button
 def create_pushbutton():
     submit_button = PyQt5.QtWidgets.QPushButton("Submit")
     return submit_button
 
+# creates the list widget, sets fonts as well
 def create_list_widget():
     listwidget = PyQt5.QtWidgets.QListWidget()
     listwidget.setFont(PyQt5.QtGui.QFont("Courier New", 10))
     return listwidget
 
+# creates the label widgets, with corresponding formatting
 def create_labels():
     dept_label = PyQt5.QtWidgets.QLabel("Dept:")
     dept_label.setAlignment(
@@ -64,6 +68,7 @@ def create_labels():
 
     return (dept_label, number_label, area_label, title_label)
 
+# creates the linedits and returns them
 def create_lineedits():
     dept_lineedit = PyQt5.QtWidgets.QLineEdit()
     title_lineedit = PyQt5.QtWidgets.QLineEdit()
@@ -72,6 +77,7 @@ def create_lineedits():
     return (dept_lineedit,
      number_lineedit, area_lineedit, title_lineedit)
 
+# creates the control frame for the GUI, with linedits and the push button
 def create_control_frame(labels, lineedits, submitbutton):
     control_frame_layout = PyQt5.QtWidgets.QGridLayout()
     control_frame_layout.addWidget(labels[0], 0, 0)
@@ -90,6 +96,7 @@ def create_control_frame(labels, lineedits, submitbutton):
     control_frame.setLayout(control_frame_layout)
     return control_frame
 
+# create a class list frame with the list widget
 def create_class_list_frame(list_widget):
     list_frame_layout = PyQt5.QtWidgets.QGridLayout()
     list_frame_layout.setContentsMargins(0, 0, 0, 0)
@@ -98,6 +105,7 @@ def create_class_list_frame(list_widget):
     list_frame.setLayout(list_frame_layout)
     return list_frame
 
+# create thec central frame with the other two frames
 def create_central_frame(control_frame, list_frame):
     central_frame_layout = PyQt5.QtWidgets.QGridLayout()
     central_frame_layout.addWidget(control_frame, 0, 0)
@@ -108,6 +116,7 @@ def create_central_frame(control_frame, list_frame):
     central_frame.setLayout(central_frame_layout)
     return central_frame
 
+# create the window for display
 def create_window(central_frame):
     window = PyQt5.QtWidgets.QMainWindow()
     window.setWindowTitle('Princeton University Class Search')
@@ -116,6 +125,7 @@ def create_window(central_frame):
     window.resize(screen_size.width()//2, screen_size.height()//2)
     return window
 
+# handle submitting the form, for the overviews query
 def handle_form_submit(lineedits,
                 list_widget, host, port, window):
     communication_list = ["get_overviews",
@@ -157,6 +167,7 @@ def handle_form_submit(lineedits,
                 window, "Server Error", str(ex))
 
 #-----------------------------------------------------------------------
+# handle the event that a list entry was clicked
 def handle_list_clicked(list_widget, host, port, window):
     class_entry = list_widget.currentItem().text()
     classid = int(class_entry[0:5])
@@ -212,7 +223,8 @@ def handle_list_clicked(list_widget, host, port, window):
     except Exception as ex:
         PyQt5.QtWidgets.QMessageBox.critical(
                 window, "Server Error", str(ex))
-
+# central point for the GUI, calls other functions
+# and shows window
 def main():
     args = input_helper()
     port = args.port
@@ -234,6 +246,7 @@ def main():
     window = create_window(central_frame)
 
     window.show()
+    
     handle_form_submit(
         lineedits, list_widget, args.host, port, window)
 
