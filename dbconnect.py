@@ -88,7 +88,6 @@ def get_class_details(classid_input):
                 row = class_table[0]
                 course_id = row[0]
 
-
                 classDict = {"courseid": course_id, "days": row[1],
                              "starttime": row[2],
                              "endtime": row[3],
@@ -130,16 +129,6 @@ def get_class_details(classid_input):
 
                 classDict["deptcoursenums"] = deptcoursenums_list
                 classDict["profnames"] = profs_list
-
-                # classDict = {"courseid": course_id, "days": days,
-                #              "starttime": start_time,
-                #              "endtime": end_time,
-                #              "bldg": bldg, "roomnum": room_num,
-                #              "deptcoursenums": deptcoursenums_list,
-                #              "area": area, "title": title, 
-                #              "descrip": descrip,
-                #              "prereqs": prereqs, 
-                #              "profnames": profs_list}
 
                 return_list = []
                 return_list.append(True)
