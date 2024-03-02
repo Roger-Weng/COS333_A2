@@ -84,7 +84,7 @@ def get_class_details(classid_input):
                 row = class_table[0]
                 course_id = row[0]
 
-                classDict = {"courseid": course_id, "days": row[1],
+                class_dict = {"courseid": course_id, "days": row[1],
                              "starttime": row[2],
                              "endtime": row[3],
                              "bldg": row[4], "roomnum": row[5]}
@@ -98,7 +98,7 @@ def get_class_details(classid_input):
                 deptcoursenums_list = []
                 for row in dept_table:
                     deptcoursenums_list.append([row[0], row[1]])
-                classDict["deptcoursenums"] = deptcoursenums_list
+                class_dict["deptcoursenums"] = deptcoursenums_list
 
                 stmt_str = "SELECT area, title, descrip, prereqs "
                 stmt_str += "FROM courses WHERE courseid = ? "
@@ -106,10 +106,10 @@ def get_class_details(classid_input):
                 course_table = cursor.fetchall()
 
                 row = course_table[0]
-                classDict["area"] = row[0]
-                classDict["title"] = row[1]
-                classDict["descrip"] = row[2]
-                classDict["prereqs"] = row[3]
+                class_dict["area"] = row[0]
+                class_dict["title"] = row[1]
+                class_dict["descrip"] = row[2]
+                class_dict["prereqs"] = row[3]
 
                 stmt_str = "SELECT profname "
                 stmt_str += "FROM coursesprofs, profs "
@@ -125,10 +125,10 @@ def get_class_details(classid_input):
                 for row in prof_table:
                     profs_list.append(row[0])
 
-                classDict["profnames"] = profs_list
+                class_dict["profnames"] = profs_list
 
                 return_list = [True]
-                return_list.append(classDict)
+                return_list.append(class_dict)
                 return return_list
 
     except Exception as ex:
