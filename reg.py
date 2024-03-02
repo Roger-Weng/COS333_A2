@@ -1,3 +1,7 @@
+#-----------------------------------------------------------------------
+# reg.py
+# Authors: Roger Weng, Vishva Ilavelan
+#-----------------------------------------------------------------------
 import argparse
 import sys
 import PyQt5.QtGui
@@ -10,72 +14,66 @@ import pickle
 def input_helper():
     parser = argparse.ArgumentParser(
         description="Client for the register application")
-    parser.add_argument('host', help="the host on which the server is running")
-    parser.add_argument('port', type=int, help="the port at which the server is listening")
+    parser.add_argument('host',
+     help="the host on which the server is running")
+    parser.add_argument('port', type=int,
+     help="the port at which the server is listening")
     args = parser.parse_args()
-
-    return args 
-  
-
+    return args
 
 def create_pushbutton():
     submit_button = PyQt5.QtWidgets.QPushButton("Submit")
     return submit_button
-    
 
 def create_list_widget():
     listwidget = PyQt5.QtWidgets.QListWidget()
     listwidget.setFont(PyQt5.QtGui.QFont("Courier New", 10))
     return listwidget
 
-
-def create_labels(): 
+def create_labels():
     dept_label = PyQt5.QtWidgets.QLabel("Dept:")
-    dept_label.setAlignment(PyQt5.QtCore.Qt.AlignRight | PyQt5.QtCore.Qt.AlignVCenter)
+    dept_label.setAlignment(
+    PyQt5.QtCore.Qt.AlignRight | PyQt5.QtCore.Qt.AlignVCenter)
     dept_label.setAutoFillBackground(True)
     dept_palette = dept_label.palette()
     dept_palette.setColor(
-        dept_label.backgroundRole(),  PyQt5.QtCore.Qt.gray)
-
-
+        dept_label.backgroundRole(),
+           PyQt5.QtCore.Qt.gray)
 
     number_label = PyQt5.QtWidgets.QLabel("Number:")
-    number_label.setAlignment(PyQt5.QtCore.Qt.AlignRight | PyQt5.QtCore.Qt.AlignVCenter)
+    number_label.setAlignment(
+    PyQt5.QtCore.Qt.AlignRight | PyQt5.QtCore.Qt.AlignVCenter)
     number_label.setAutoFillBackground(True)
     number_palette = number_label.palette()
     number_palette.setColor(
         number_label.backgroundRole(),  PyQt5.QtCore.Qt.gray)
 
-
-    
     area_label = PyQt5.QtWidgets.QLabel("Area:")
-    area_label.setAlignment(PyQt5.QtCore.Qt.AlignRight | PyQt5.QtCore.Qt.AlignVCenter)
+    area_label.setAlignment(
+    PyQt5.QtCore.Qt.AlignRight | PyQt5.QtCore.Qt.AlignVCenter)
     area_label.setAutoFillBackground(True)
     area_palette = area_label.palette()
     area_palette.setColor(
         area_label.backgroundRole(),  PyQt5.QtCore.Qt.gray)
 
-
-
     title_label = PyQt5.QtWidgets.QLabel("Title:")
-    title_label.setAlignment(PyQt5.QtCore.Qt.AlignRight | PyQt5.QtCore.Qt.AlignVCenter)
+    title_label.setAlignment(
+    PyQt5.QtCore.Qt.AlignRight | PyQt5.QtCore.Qt.AlignVCenter)
     title_label.setAutoFillBackground(True)
     title_palette = title_label.palette()
     title_palette.setColor(
-        title_label.backgroundRole(),  PyQt5.QtCore.Qt.gray) 
+        title_label.backgroundRole(),  PyQt5.QtCore.Qt.gray)
 
-    
     return (dept_label, number_label, area_label, title_label)
-   
-    
+
 def create_lineedits():
     dept_lineedit = PyQt5.QtWidgets.QLineEdit()
     title_lineedit = PyQt5.QtWidgets.QLineEdit()
     area_lineedit = PyQt5.QtWidgets.QLineEdit()
     number_lineedit = PyQt5.QtWidgets.QLineEdit()
-    return (dept_lineedit, number_lineedit, area_lineedit, title_lineedit)
-  
-  
+    return (dept_lineedit,
+     number_lineedit, area_lineedit, title_lineedit)
+
 def create_control_frame(labels, lineedits, submitbutton):
     control_frame_layout = PyQt5.QtWidgets.QGridLayout()
     control_frame_layout.addWidget(labels[0], 0, 0)
@@ -90,8 +88,6 @@ def create_control_frame(labels, lineedits, submitbutton):
 
     control_frame_layout.addWidget(submitbutton, 0, 3, 4, 1)
 
-    
-    
     control_frame = PyQt5.QtWidgets.QFrame()
     control_frame.setLayout(control_frame_layout)
     return control_frame
@@ -104,21 +100,17 @@ def create_class_list_frame(list_widget):
     list_frame.setLayout(list_frame_layout)
     return list_frame
 
-
-
 def create_central_frame(control_frame, list_frame):
     central_frame_layout = PyQt5.QtWidgets.QGridLayout()
-    central_frame_layout.addWidget(control_frame, 0, 0) 
-    central_frame_layout.addWidget(list_frame, 1, 0)    
+    central_frame_layout.addWidget(control_frame, 0, 0)
+    central_frame_layout.addWidget(list_frame, 1, 0)
     central_frame = PyQt5.QtWidgets.QFrame()
     central_frame_layout.setContentsMargins(0, 0, 0, 0)
     central_frame_layout.setSpacing(0)
     central_frame.setLayout(central_frame_layout)
     return central_frame
-    
 
 def create_window(central_frame):
-
     window = PyQt5.QtWidgets.QMainWindow()
     window.setWindowTitle('Princeton University Class Search')
     window.setCentralWidget(central_frame)
@@ -126,20 +118,19 @@ def create_window(central_frame):
     window.resize(screen_size.width()//2, screen_size.height()//2)
     return window
 
-
-def handle_form_submit(lineedits, list_widget, host, port, window):
-
-    
-
+def handle_form_submit(lineedits,
+                list_widget, host, port, window):
     dept_input  = lineedits[0].text()
     number_input = lineedits[1].text()
     area_input = lineedits[2].text()
     title_input = lineedits[3].text()
 
-    communication_list = ["get_overviews", {'dept': dept_input, 
-                                            "coursenum": number_input, "area": area_input,
-                                            "title": title_input}]
- 
+    communication_list = ["get_overviews",
+                          {'dept': dept_input,
+                        "coursenum": number_input,
+                        "area": area_input,
+                        "title": title_input}]
+
     try:
         with socket.socket() as sock:
             sock.connect((host, port))
@@ -152,22 +143,23 @@ def handle_form_submit(lineedits, list_widget, host, port, window):
             search_status = search_results[0]
             results_list = search_results[1]
 
-            
-
             if (search_status):
                 row = 0
                 list_widget.clear()
                 for class_dict in results_list:
-                    entry = '%5s %3s %4s %3s %-40s' % (class_dict["classid"], class_dict["dept"], 
-                    class_dict["coursenum"], class_dict["area"], class_dict["title"])
+                    entry = '%5s %3s %4s %3s %-40s' % (
+                    class_dict["classid"], class_dict["dept"], 
+                    class_dict["coursenum"],
+                    class_dict["area"], class_dict["title"])
                     list_widget.insertItem(row, entry)
                     row += 1
-                list_widget.setCurrentRow(0)            
-            else: 
+                list_widget.setCurrentRow(0)
+
+            else:
                 PyQt5.QtWidgets.QMessageBox.critical(
                 window, "Server Error", search_results[1])
 
-    except Exception as ex: 
+    except Exception as ex:
          PyQt5.QtWidgets.QMessageBox.critical(
                 window, "Server Error", str(ex))
 
@@ -189,25 +181,36 @@ def handle_list_clicked(list_widget, host, port, window):
             search_status = search_results[0]
             class_dict = search_results[1]
 
-            
-
             if (search_status):
-                display_string = "Course Id: " + str(class_dict["courseid"]) + "\n\n"
-                display_string += "Days: " + class_dict["days"] + "\n"
-                display_string += "Start time: " + class_dict["starttime"] + "\n"
-                display_string += "End time: " + class_dict["endtime"] + "\n"
-                display_string += "Building: " + class_dict["bldg"] + "\n"
-                display_string += "Room: " + class_dict["roomnum"] + "\n\n"
+                display_string = "Course Id: " + str(
+                    class_dict["courseid"]) + "\n\n"
+                display_string += "Days: " + class_dict[
+                    "days"] + "\n"
+                display_string += "Start time: " + class_dict[
+                    "starttime"] + "\n"
+                display_string += "End time: " + class_dict[
+                    "endtime"] + "\n"
+                display_string += "Building: " + class_dict[
+                    "bldg"] + "\n"
+                display_string += "Room: " + class_dict[
+                    "roomnum"] + "\n\n"
 
-                dept_nums_list = class_dict["deptcoursenums"]
+                dept_nums_list = class_dict[
+                    "deptcoursenums"]
                 for pair in dept_nums_list:
-                    display_string += "Dept and Number: " + pair[0] + " " + pair[1] + "\n"
+                    display_string += "Dept and Number: " + pair[
+                        0] + " " + pair[1] + "\n"
                 display_string += "\n"
-                display_string += "Area: " + class_dict["area"] + "\n\n"
-                display_string += "Title: " + class_dict["title"] + "\n\n"
-                display_string += "Description: " + class_dict["descrip"] + "\n\n"
-                display_string += "Prerequisites: " + class_dict["prereqs"] + "\n\n"
-                profs = class_dict["profnames"]
+                display_string += "Area: " + class_dict[
+                    "area"] + "\n\n"
+                display_string += "Title: " + class_dict[
+                    "title"] + "\n\n"
+                display_string += "Description: " + class_dict[
+                    "descrip"] + "\n\n"
+                display_string += "Prerequisites: " + class_dict[
+                    "prereqs"] + "\n\n"
+                profs = class_dict[
+                    "profnames"]
                 for professor in profs:
                     display_string += "Professor: " + professor + "\n"
                 PyQt5.QtWidgets.QMessageBox.information(
@@ -234,30 +237,39 @@ def main():
     lineedits = create_lineedits()
     submitbutton = create_pushbutton()
     
-    control_frame = create_control_frame(labels, lineedits, submitbutton)
+    control_frame = create_control_frame(
+        labels, lineedits, submitbutton)
    
     list_widget = create_list_widget()
     list_frame = create_class_list_frame(list_widget)
-    central_frame = create_central_frame(control_frame, list_frame)
+    central_frame = create_central_frame(
+        control_frame, list_frame)
     window = create_window(central_frame)
 
     window.show()
-    handle_form_submit(lineedits, list_widget, host, port, window)
+    handle_form_submit(
+        lineedits, list_widget, host, port, window)
     
 
 
     def helper_line_edits():
-        handle_form_submit(lineedits, list_widget, host, port, window)
+        handle_form_submit(
+            lineedits, list_widget, host, port, window)
     for lineedit in lineedits: 
-        lineedit.returnPressed.connect(helper_line_edits)
+        lineedit.returnPressed.connect(
+            helper_line_edits)
 
     def helper_push_button():
-        handle_form_submit(lineedits, list_widget, host, port, window)
-    submitbutton.clicked.connect(helper_push_button)
+        handle_form_submit(
+            lineedits, list_widget, host, port, window)
+    submitbutton.clicked.connect(
+        helper_push_button)
 
     def helper_list_clicked():
-        handle_list_clicked(list_widget, host, port, window)
-    list_widget.itemActivated.connect(helper_list_clicked)    
+        handle_list_clicked(
+            list_widget, host, port, window)
+    list_widget.itemActivated.connect(
+        helper_list_clicked)    
     
 
     sys.exit(app.exec_())

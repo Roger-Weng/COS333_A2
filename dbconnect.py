@@ -57,8 +57,8 @@ def search(dept_input, num_input, area_input, title_input):
     except Exception as ex:
         return_list = []
         return_list.append(False)
-        return_list.append("A server error occurred. Please contact the system administrator.")
-
+        return_list.append(
+"A server error occurred. Please contact the system administrator.")
         print(sys.argv[0] + ":", ex, file=sys.stderr)
   
         return return_list
@@ -70,7 +70,7 @@ def search(dept_input, num_input, area_input, title_input):
 def get_class_details(classid_input): 
 
     try:
-    
+
         with sqlite3.connect(DATABASE_URL, isolation_level=None,
                              uri=True) as connection:
             with contextlib.closing(connection.cursor()) as cursor:
@@ -88,23 +88,20 @@ def get_class_details(classid_input):
 
                     return_list = []
                     return_list.append(False)
-                    return_list.append("no class with classid " + str(classid_input) + " exists")
+                    return_list.append(
+        "no class with classid " + str(classid_input) + " exists")
 
                     return return_list
-               
 
                 row = class_table[0]
                 course_id, days, start_time = row[0], row[1], row[2]
                 end_time, bldg, room_num = row[3], row[4], row[5]
-
 
                 stmt_str = "SELECT dept, coursenum "
                 stmt_str += "FROM crosslistings WHERE courseid = ? "
                 stmt_str += "ORDER BY dept, coursenum "
                 cursor.execute(stmt_str, [course_id])
                 dept_table = cursor.fetchall()
-
-
 
                 stmt_str = "SELECT area, title, descrip, prereqs "
                 stmt_str += "FROM courses WHERE courseid = ? "
@@ -115,14 +112,14 @@ def get_class_details(classid_input):
                 area, title = row[0], row[1]
                 descrip, prereqs = row[2], row[3]
 
-
-
                 stmt_str = "SELECT profname "
                 stmt_str += "FROM coursesprofs, profs "
                 stmt_str += "WHERE courseid = ? "
                 stmt_str += "AND profs.profid = coursesprofs.profid "
                 stmt_str += "ORDER BY profname "
+
                 cursor.execute(stmt_str, [course_id])
+
                 prof_table = cursor.fetchall()
                 deptcoursenums_list = []
                 for row in dept_table:
@@ -132,32 +129,28 @@ def get_class_details(classid_input):
                 for row in prof_table:
                     profs_list.append(row[0])
 
-
-
-                classDict = {"courseid": course_id, "days": days, 
-                             "starttime": start_time, 
-                             "endtime": end_time, 
-                             "bldg": bldg, "roomnum": room_num, 
-                             "deptcoursenums": deptcoursenums_list, 
-                             "area": area, "title": title, "descrip": descrip, 
-                             "prereqs": prereqs, "profnames": profs_list}
-
-                
+                classDict = {"courseid": course_id, "days": days,
+                             "starttime": start_time,
+                             "endtime": end_time,
+                             "bldg": bldg, "roomnum": room_num,
+                             "deptcoursenums": deptcoursenums_list,
+                             "area": area, "title": title, 
+                             "descrip": descrip,
+                             "prereqs": prereqs, 
+                             "profnames": profs_list}
 
                 return_list = []
                 return_list.append(True)
                 return_list.append(classDict)
 
-        
                 return return_list
 
     except Exception as ex:
         return_list = []
         return_list.append(False)
-        return_list.append("A server error occurred. Please contact the system administrator.")
+        return_list.append(          
+"A server error occurred. Please contact the system administrator.")
 
         print(sys.argv[0] + ":", ex, file=sys.stderr)
-  
+
         return return_list
-
-
