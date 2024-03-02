@@ -93,7 +93,7 @@ def main():
     # Boundary and Coverage Testing
     
     # test given by class
-
+    
 
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'', 'area':'', 'title':''}]))
     print(connect_server(host, port, ['get_overviews', {'dept':'', 'coursenum':'333', 'area':'', 'title':''}]))
