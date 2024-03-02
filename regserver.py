@@ -81,7 +81,8 @@ def main():
                     flo = sock.makefile(mode='wb')
                     pickle.dump(return_obj, flo)
                     flo.flush()
-                    print("Closed socket")
+
+                print("Closed socket")   
 
             except Exception as ex:
                 print(ex, file = sys.stderr)
