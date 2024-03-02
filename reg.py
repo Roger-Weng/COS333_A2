@@ -77,7 +77,7 @@ def create_lineedits():
     return (dept_lineedit,
      number_lineedit, area_lineedit, title_lineedit)
 
-# creates the control frame for the GUI, 
+# creates the control frame for the GUI,
 # with linedits and the push button
 def create_control_frame(labels, lineedits, submitbutton):
     control_frame_layout = PyQt5.QtWidgets.QGridLayout()
