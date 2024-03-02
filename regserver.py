@@ -87,7 +87,7 @@ def main():
        
     except Exception as ex:
         # error in initializing server, can kill hte program
-        print(ex, file = sys.stderr)
+        print(sys.argv[0] + ":", ex, file=sys.stderr)
         sys.exit(1)
         
 
