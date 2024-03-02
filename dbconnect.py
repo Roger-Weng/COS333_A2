@@ -42,10 +42,10 @@ def search(dept_input, num_input, area_input, title_input):
                 classes_list = []
 
                 for row in table:
-                    classDict = {"classid": row[0], "dept": row[1],
+                    class_dict = {"classid": row[0], "dept": row[1],
                                  "coursenum": row[2], 
                                  "area": row[3], "title": row[4]}
-                    classes_list.append(classDict)
+                    classes_list.append(class_dict)
 
                 return_list.append(classes_list)
                 return return_list
@@ -70,14 +70,11 @@ def get_class_details(classid_input):
                 stmt_str = "SELECT courseid, days, starttime, "
                 stmt_str += "endtime, bldg, roomnum "
                 stmt_str += "FROM classes WHERE classid = ? "
-
                 cursor.execute(stmt_str, [classid_input])
                 class_table = cursor.fetchall()
-
                 if len(class_table) == 0:
                     print(sys.argv[0]+":", "no class with classid",
                     classid_input, "exists", file=sys.stderr)
-
                     return_list = []
                     return_list.append(False)
                     return_list.append(
@@ -85,8 +82,7 @@ def get_class_details(classid_input):
 
                     return return_list
 
-                row = class_table[0]
-                course_id = row[0]
+                row, course_id = class_table[0], row[0]
 
                 classDict = {"courseid": course_id, "days": row[1],
                              "starttime": row[2],
@@ -134,7 +130,6 @@ def get_class_details(classid_input):
                 return_list = []
                 return_list.append(True)
                 return_list.append(classDict)
-
                 return return_list
 
     except Exception as ex:

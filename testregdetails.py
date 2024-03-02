@@ -91,7 +91,7 @@ def main():
 
     # make sure help command is formatted correct
     
-    print(connect_server(host, port, ["get_detail", 8000]))
+
     print(connect_server(host, port, ["get_detail", 1]))
    
 
@@ -106,7 +106,7 @@ def main():
     print(connect_server(host, port, ["get_detail", 10109]))
     print(connect_server(host, port, ["get_detail", 10109]))
    
-
+    os.system("cp /u/cos333/Asgt1Solution/reg.sqlite .")
 
 
 
