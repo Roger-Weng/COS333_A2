@@ -1,0 +1,45 @@
+yw0947_vi6908
+
+Names: Yan (Roger) Weng, Vishva Ilavelan
+
+Contributions:
+We did mostly pair programming on the assignment. 
+
+Here's the contributions from Yan (Roger) Weng: 
+In reg.py, Roger wrote the function that calls database and prints output 
+in the correct format to the terminal. In addition, Roger wrote the
+function that deals with input strings that contain % or _ to 
+make sure it's not interpreted as wildcards when feeding into sqlite. In
+regdetails.py, Roger wrote the function that print info about
+classes, department and professors. In db_connect.py, Roger 
+wrote the function that search for specific classes given certain 
+constraints(for reg.py). Roger also wrote get_class_table and get_course_info 
+functions (for regdetails.py). 
+
+Here's the contributions from Visva Ilava:
+
+
+
+
+Help received: We received help from Professor Dondero on Ed. We asked about how the process of executing queries works.
+
+Sources of information: Apart from questions we asked on Ed, we looked at lecture slides and handouts while doing the assignment.
+
+Time spent on the assignment: 15 hours
+
+
+
+Assessment of the assignment:
+The assignment helped us to learn more about GUI programming and network
+programming in Python. 
+
+
+
+Specifically, the assignment helps us better understand sqlite and how to write prepared statements.
+In addition, we also learned a lot about modularization and 
+testing. One suggestion of improvement is that it might also be 
+helpful for us to learn how to write/modify the database in the assignment.
+
+
+
+All known bugs: No
