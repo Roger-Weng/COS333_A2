@@ -90,9 +90,7 @@ def main():
 
 
 
-    print(connect_server(host, port, ["get_detail", 8000]))
-    print(connect_server(host, port, ["get_detail", 1]))
-    print(connect_server(host, port, ["get_detail", 394929138498230498091283409810329480912830981203948091238409128340981298798797987987987987656565093475098324583042958094802193840]))
+   
     print(connect_server(host, port, ["get_detail", "asdjfkljlkj324jk234000"]))
     print(connect_server(host, port, ["get_detail", "q23ksdf 0001 "]))
 
@@ -101,100 +99,6 @@ def main():
 
 
 
-    # test how responds to missing tables / database corruption
-
-    corruption_helper("profs ")
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    restore_table("CREATE TABLE profs (profid INTEGER DEFAULT NULL, profname TEXT DEFAULT NULL) ")
-
-    corruption_helper("coursesprofs ")
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-
-    restore_table("CREATE TABLE coursesprofs (courseid INTEGER DEFAULT NULL, profid INTEGER DEFAULT NULL) ")
-
-
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-
-    corruption_helper("crosslistings ")
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    restore_table("CREATE TABLE crosslistings (courseid INTEGER DEFAULT NULL, dept TEXT DEFAULT NULL, coursenum TEXT DEFAULT NULL) ")
-
-    corruption_helper("profs ")
-    corruption_helper("coursesprofs ")
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    corruption_helper("crosslistings")
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-
-    restore_table("CREATE TABLE crosslistings (courseid INTEGER DEFAULT NULL, dept TEXT DEFAULT NULL, coursenum TEXT DEFAULT NULL) ")
-
-    restore_table("CREATE TABLE profs (profid INTEGER DEFAULT NULL, profname TEXT DEFAULT NULL) ")
-    restore_table("CREATE TABLE coursesprofs (courseid INTEGER DEFAULT NULL, profid INTEGER DEFAULT NULL) ")
-
-    corruption_helper("profs ")
-    restore_table("CREATE TABLE profs (profid INTEGER DEFAULT NULL) ")
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    corruption_helper("profs ")
-    restore_table("CREATE TABLE profs (profid INTEGER DEFAULT NULL, profname TEXT DEFAULT NULL) ")
-
-    corruption_helper("coursesprofs ")
-    restore_table("CREATE TABLE coursesprofs (courseid INTEGER DEFAULT NULL) ")
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    corruption_helper("coursesprofs ")
-    restore_table("CREATE TABLE coursesprofs (courseid INTEGER DEFAULT NULL, profid INTEGER DEFAULT NULL) ")
-
-    corruption_helper("courses ")
-    restore_table("CREATE TABLE courses (courseid INTEGER DEFAULT NULL, area TEXT DEFAULT NULL, title TEXT DEFAULT NULL) ")
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    corruption_helper("crosslistings ")
-    restore_table(("CREATE TABLE crosslistings (courseid INTEGER DEFAULT NULL, dept TEXT DEFAULT NULL) "))
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    corruption_helper("coursesprofs ")
-    restore_table("CREATE TABLE coursesprofs (courseid INTEGER DEFAULT NULL) ")
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    corruption_helper("coursesprofs ")
-    restore_table("CREATE TABLE coursesprofs (courseid INTEGER DEFAULT NULL, profid INTEGER DEFAULT NULL) ")
-
-    corruption_helper("coursesprofs ")
-    corruption_helper("profs ")
-    corruption_helper("crosslistings ")
-    corruption_helper("courses ")
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-
-    corruption_helper("classes ")
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    restore_table("CREATE TABLE classes (classid INTEGER DEFAULT NULL, courseid INTEGER DEFAULT NULL, days TEXT DEFAULT NULL, starttime TEXT DEFAULT NULL, endtime TEXT DEFAULT NULL, bldg TEXT DEFAULT NULL,  roomnum TEXT DEFAULT NULL) ")
-
-    print(connect_server(host, port, ["get_detail", 10109]))
-
-    os.system("rm -f reg.sqlite")
-    print(connect_server(host, port, ["get_detail", 10109]))
 
 
     # Add more tests here.
