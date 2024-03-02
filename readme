@@ -6,16 +6,21 @@ Contributions:
 We did mostly pair programming on the assignment. 
 
 Here's the contributions from Yan (Roger) Weng: 
-In reg.py, Roger wrote the function that calls database and prints output 
-in the correct format to the terminal. 
+In reg.py, Roger wrote the functions that create control frame, list frame,
+central frame, window. In additon, Roger also wrote part of the functions 
+that handle form sumbit and the main function.
 
-In regdetails.py, Roger wrote the function that print info about
-classes, department and professors. In db_connect.py, Roger 
-wrote the function that search for specific classes given certain 
-constraints(for reg.py). Roger also wrote get_class_table and get_course_info 
-functions (for regdetails.py). 
+In regserver.py, Roger mainly wrote the parts that handle get overviews 
 
-Here's the contributions from Visva Ilava:
+In db_connect.py, Roger wrote the function that search for specific classes given certain constraints(for reg.py). Roger also wrote get_class_table and get_course_info functions (for regdetails.py). 
+
+Here's the contributions from Vishva Ilavelan:
+
+In reg.py Vishva helped to write the event handling functions that display query data, as well as the logic behind the dialog
+boxes. Furthermore, Vishva also worked on developing the nesting for the different frames in reg.py, as well as the client-side error
+handling. In dbconnect.py, Vishva helped alter the functions so that the query data structures they returned adhered to the
+communication protocol. In regserver.py, Vishva helped write the socket connection and connection request handling code. Lastly, 
+Vishva helped
 
 
 
