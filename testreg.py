@@ -66,6 +66,7 @@ def connect_server(host, port, comm_message):
 
             flo = sock.makefile(mode = 'rb')
             search_results = pickle.load(flo)
+            print("hit")
             return search_results
           
      except Exception as ex: 
@@ -79,7 +80,6 @@ def main():
 
     if len(sys.argv) != 2:
         sys.exit(1)
-
 
     host = sys.argv[1]
     port = sys.argv[2]

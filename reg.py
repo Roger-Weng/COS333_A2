@@ -143,12 +143,12 @@ def handle_form_submit(lineedits,
             search_status = search_results[0]
             results_list = search_results[1]
 
-            if (search_status):
+            if search_status:
                 row = 0
                 list_widget.clear()
                 for class_dict in results_list:
                     entry = '%5s %3s %4s %3s %-40s' % (
-                    class_dict["classid"], class_dict["dept"], 
+                    class_dict["classid"], class_dict["dept"],
                     class_dict["coursenum"],
                     class_dict["area"], class_dict["title"])
                     list_widget.insertItem(row, entry)
