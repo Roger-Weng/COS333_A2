@@ -93,7 +93,7 @@ def main():
 
     
     
-    print(connect_server(host, port, ["get_detail", 8000]))
+    
 
     os.system("rm -f reg.sqlite")
 
