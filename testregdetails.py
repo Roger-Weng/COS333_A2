@@ -91,7 +91,7 @@ def main():
 
     # make sure help command is formatted correct
     
-
+    print(connect_server(host, port, ["get_detail", 8000]))
     print(connect_server(host, port, ["get_detail", 1]))
    
 
