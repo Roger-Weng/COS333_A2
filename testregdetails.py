@@ -82,7 +82,7 @@ def main():
 
 
     host = sys.argv[1]
-    port = sys.argv[2]
+    port = int(sys.argv[2])
 
     table = getclassids()
 
