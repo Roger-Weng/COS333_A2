@@ -156,6 +156,7 @@ def handle_form_submit(lineedits,
         PyQt5.QtWidgets.QMessageBox.critical(
                 window, "Server Error", str(ex))
 
+#-----------------------------------------------------------------------
 def handle_list_clicked(list_widget, host, port, window):
     class_entry = list_widget.currentItem().text()
     classid = int(class_entry[0:5])
@@ -188,9 +189,7 @@ def handle_list_clicked(list_widget, host, port, window):
                 display_string += "Room: " + class_dict[
                     "roomnum"] + "\n\n"
 
-                dept_nums_list = class_dict[
-                    "deptcoursenums"]
-                for pair in dept_nums_list:
+                for pair in class_dict["deptcoursenums"]:
                     display_string += "Dept and Number: " + pair[
                         0] + " " + pair[1] + "\n"
                 display_string += "\n"
@@ -202,9 +201,7 @@ def handle_list_clicked(list_widget, host, port, window):
                     "descrip"] + "\n\n"
                 display_string += "Prerequisites: " + class_dict[
                     "prereqs"] + "\n\n"
-                profs = class_dict[
-                    "profnames"]
-                for professor in profs:
+                for professor in class_dict["profnames"]:
                     display_string += "Professor: " + professor + "\n"
                 PyQt5.QtWidgets.QMessageBox.information(
                 window, "Class Details", display_string)
