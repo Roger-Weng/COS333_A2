@@ -83,7 +83,7 @@ def main():
     print("yo")
 
     host = sys.argv[1]
-    port = sys.argv[2]
+    port = int(sys.argv[2])
 
     print(connect_server(host, port, ['get_overviews', {'dept':'COS', 'coursenum':'', 'area':'', 'title':''}]))
     print(connect_server(host, port, ['get_overviews', {'dept':'COS', 'coursenum':'2', 'area':'qr', 'title':'intro'}]))

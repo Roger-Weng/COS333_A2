@@ -160,7 +160,7 @@ def handle_form_submit(lineedits,
                 window, "Server Error", search_results[1])
 
     except Exception as ex:
-         PyQt5.QtWidgets.QMessageBox.critical(
+        PyQt5.QtWidgets.QMessageBox.critical(
                 window, "Server Error", str(ex))
 
 def handle_list_clicked(list_widget, host, port, window):
@@ -181,7 +181,7 @@ def handle_list_clicked(list_widget, host, port, window):
             search_status = search_results[0]
             class_dict = search_results[1]
 
-            if (search_status):
+            if search_status:
                 display_string = "Course Id: " + str(
                     class_dict["courseid"]) + "\n\n"
                 display_string += "Days: " + class_dict[
