@@ -19,7 +19,7 @@ def input_helper():
 
 
 def create_pushbutton():
-    submit_button = PyQt5.QtWidgets.QPushButton("Submit:")
+    submit_button = PyQt5.QtWidgets.QPushButton("Submit")
     return submit_button
     
 
@@ -247,7 +247,7 @@ def main():
 
 
     def helper_line_edits():
-        handle_form_submit(lineedits, list_widget, host, port)
+        handle_form_submit(lineedits, list_widget, host, port, window)
     for lineedit in lineedits: 
         lineedit.returnPressed.connect(helper_line_edits)
 
