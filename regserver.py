@@ -59,7 +59,7 @@ def main():
                     print("Accepted connection, opened socket")
                     flo = sock.makefile(mode = 'rb')
                     query_object = pickle.load(flo)
-                    print("Recieved command:", query_object[0])
+                    print("Received command:", query_object[0])
                     if query_object[0] == 'get_overviews':
                         return_obj = handle_get_overviews(query_object)
         
